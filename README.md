@@ -28,18 +28,52 @@
 | **Backend Logic / Architecture** | Modular Python Package (`simulation/`, `utils/`) | Clean separation of simulation, LLM, and visualization logic |
 | **Deployment / Runtime** | **Local Execution (Streamlit App + Ollama Server)** | Fully offline and hackathon-friendly |
 
-
-## Roadmap:
-
-Create data input form for ecosystem parameters.
-
-Implement simulation engine (e.g., simplified population dynamics or pollution spread).
-
-Integrate agent to propose interventions.
-
-Visualize outcomes for different intervention strategies.
-
-Bonus: Allow user to “tweak” interventions in real-time.
+## Architecture Overview
+```
+                   ┌─────────────────────┐
+                   │   User Interface    │
+                   │   (Streamlit UI)    │
+                   │ - Input ecosystem   │
+                   │   parameters        │
+                   │ - Tweak interventions│
+                   │ - View charts       │
+                   └─────────┬──────────┘
+                             │
+                             ▼
+                   ┌─────────────────────┐
+                   │ Simulation Engine   │
+                   │ (Ecosystem Model)  │
+                   │ - Flora / Fauna    │
+                   │ - Water Level      │
+                   │ - Human Activity   │
+                   │ - Step-wise sim    │
+                   └─────────┬──────────┘
+                             │
+                             ▼
+          ┌───────────────────────────────┐
+          │ Intervention Manager          │
+          │ - Predefined strategies       │
+          │ - Ollama LLM-suggested       │
+          │   interventions              │
+          └─────────┬───────────────┬────┘
+                    │               │
+                    ▼               ▼
+          ┌────────────────┐   ┌────────────────┐
+          │ Scoring & Eval │   │ Visualization  │
+          │ - Sustainability│   │ (Plotly Charts)│
+          │   score         │   │ - Multi-metric │
+          │ - Best strategy │   │   line charts  │
+          └────────┬────────┘   └───────────────┘
+                   │
+                   ▼
+           ┌───────────────┐
+           │ Ollama LLM    │
+           │ - Generates   │
+           │   strategies  │
+           │ - Explains    │
+           │   outcomes    │
+           └───────────────┘
+```
 
 ## Project Structure
 
@@ -80,4 +114,13 @@ streamlit run app.py
 ```
 
 4. Adjust ecosystem parameters and intervention strategies in real-time.
+
+
+## Roadmap:
+
+- Create data input form for ecosystem parameters.
+- Implement simulation engine (e.g., simplified population dynamics or pollution spread).
+- Integrate agent to propose interventions.
+- Visualize outcomes for different intervention strategies.
+- Bonus: Allow user to “tweak” interventions in real-time.
 
