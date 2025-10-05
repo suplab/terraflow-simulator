@@ -18,13 +18,16 @@
 
 ## Tech Stack:
 
-Models: Rule-based + reinforcement learning (lightweight Python sim).
+| Layer | Technology Used| Purpose |
+| ---| --- | --- |
+| **Frontend / UI** | **Streamlit** | Interactive dashboard for user input and visualization |
+| **Simulation Engine** | **Python (NumPy, Pandas)** | Micro-ecosystem modeling & state evolution |
+| **AI / Autonomous Agent** | **Ollama (Local LLM e.g., Llama 2 / Mistral)** | Generates intervention strategies & explains outcomes |
+| **Visualization** | **Plotly** | Dynamic simulation comparison charts|
+| **Scoring & Evaluation** | **Custom Sustainability Scoring Logic**  | Ranks interventions based on ecological impact |
+| **Backend Logic / Architecture** | Modular Python Package (`simulation/`, `utils/`) | Clean separation of simulation, LLM, and visualization logic |
+| **Deployment / Runtime** | **Local Execution (Streamlit App + Ollama Server)** | Fully offline and hackathon-friendly |
 
-LLM: ollama2 for interpreting simulation outputs and generating recommendations.
-
-Visualization: Matplotlib / Plotly for scenario charts.
-
-Frontend: Streamlit for interactive dashboards.
 
 ## Roadmap:
 
