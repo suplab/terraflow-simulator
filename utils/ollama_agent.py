@@ -1,7 +1,6 @@
-from ollama import Ollama
+import ollama
 import json
 
-ollama_client = Ollama()  # Uses local model by default
 
 def suggest_strategies_ollama(ecosystem_state, n=2):
     prompt = f"""
@@ -21,15 +20,16 @@ def suggest_strategies_ollama(ecosystem_state, n=2):
 
     Return a JSON array.
     """
-    response = ollama_client.chat(
-        model="llama2",
-        messages=[{"role":"user","content":prompt}],
-        max_tokens=300
-    )
+    
 
     try:
-        strategies = json.loads(response.text)
+        response = ollama.chat(
+            model="llama3.2:1b",
+            messages=[{"role":"user","content":prompt}]
+        )
+        strategies = json.loads(response.message["content"])
         return strategies
+        #return response["message"]["content"]
     except Exception as e:
         print("Error parsing Ollama response:", e)
         return []
@@ -44,9 +44,8 @@ def explain_strategy_ollama(strategy, final_state, steps):
 
     Explain why this strategy is recommended or not, and what impact it may have.
     """
-    response = ollama_client.chat(
-        model="llama2",
-        messages=[{"role":"user","content":prompt}],
-        max_tokens=150
+    response = ollama.chat(
+        model="llama3.2:1b",
+        messages=[{"role":"user","content":prompt}]
     )
-    return response.text
+    return response.message["content"]
